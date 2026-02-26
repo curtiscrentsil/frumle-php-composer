@@ -1,0 +1,42 @@
+{
+    "name": "frumle/frumle",
+    "description": "AI-powered codebase analyzer and API documentation generator for PHP",
+    "type": "library",
+    "license": "MIT",
+    "version": "0.1.0",
+    "keywords": [
+        "documentation",
+        "api",
+        "analyzer",
+        "ai",
+        "laravel",
+        "symfony",
+        "codeigniter",
+        "cakephp",
+        "yii",
+        "laminas",
+        "slim",
+        "phalcon"
+    ],
+    "authors": [
+        {
+            "name": "Frumle",
+            "email": "support@frumle.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.0",
+        "ext-curl": "*",
+        "ext-json": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Frumle\\": "src/"
+        }
+    },
+    "bin": [
+        "bin/frumle"
+    ],
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
