@@ -55,6 +55,8 @@ class FrumleConfig
         $root = rtrim($projectDir, DIRECTORY_SEPARATOR);
         $port = null;
 
+        $isLaravel = file_exists($root . '/artisan');
+
         // 1. Check .env files (highest priority — used by Laravel, Symfony, etc.)
         foreach (['.env', '.env.local', '.env.development', '.env.dev'] as $envFile) {
             $envPath = $root . DIRECTORY_SEPARATOR . $envFile;
@@ -65,13 +67,20 @@ class FrumleConfig
                     $port = (int) $m[1];
                     break;
                 }
-                // Laravel's APP_URL
-                if (preg_match('/APP_URL\s*=\s*https?:\/\/[^:]+:(\d+)/i', $content, $m)) {
-                    $port = (int) $m[1];
+                // APP_URL with an explicit port (e.g. http://localhost:8080)
+                if (preg_match('/APP_URL\s*=\s*(https?:\/\/[^:\s]+):(\d+)/i', $content, $m)) {
+                    $port = (int) $m[2];
                     break;
                 }
+                // APP_URL without a port (e.g. http://localhost)
+                // Laravel's artisan serve defaults to 8000, so don't return bare localhost
                 if (preg_match('/APP_URL\s*=\s*(https?:\/\/[^\s]+)/i', $content, $m)) {
-                    return $m[1];
+                    $appUrl = rtrim($m[1], '/');
+                    if ($isLaravel && preg_match('/^https?:\/\/localhost\/?$/', $appUrl)) {
+                        $port = 8000;
+                        break;
+                    }
+                    return $appUrl;
                 }
             }
         }
