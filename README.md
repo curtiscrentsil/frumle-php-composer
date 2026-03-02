@@ -184,7 +184,7 @@ Detects Slim via `public/index.php` and scans route definitions and middleware.
 
 | Variable         | Description                    | Default                                        |
 |------------------|--------------------------------|------------------------------------------------|
-| `FRUMLE_API_URL` | Backend API URL (for testing)  | `https://dev-doc-726dc734499e.herokuapp.com`   |
+| `FRUMLE_API_URL` | Backend API URL (for testing)  | `https://frumle-production.up.railway.app`   |
 | `FRUMLE_API_KEY` | API key (alternative to config)| —                                              |
 
 ## License

@@ -9,7 +9,7 @@ namespace Frumle;
  */
 class ApiClient
 {
-    private const DEFAULT_API_URL = 'https://dev-doc-726dc734499e.herokuapp.com';
+    private const DEFAULT_API_URL = 'https://frumle-production.up.railway.app';
 
     private string $apiUrl;
 
