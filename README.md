@@ -4,73 +4,55 @@ Analyze your PHP codebase with AI and generate comprehensive API documentation. 
 
 ## Installation
 
-### Global Install (Recommended)
-
-```bash
-composer global require frumle/frumle
-```
-
-Make sure your Composer global bin directory is in your `PATH`:
-
-```bash
-export PATH="$HOME/.composer/vendor/bin:$PATH"
-```
-
-### Per-Project Install
-
 ```bash
 composer require --dev frumle/frumle
 ```
 
-Then run via:
-
-```bash
-vendor/bin/frumle
-```
+> **Note:** Avoid `composer global require` if you also use Frumle for JavaScript, Python, or C# — global installs from different package managers can conflict. Use `vendor/bin/frumle` instead.
 
 ## Quick Start
 
 ```bash
 # 1. Add your API key (get it from the Frumle dashboard)
-frumle add-key <your-api-key>
+vendor/bin/frumle add-key <your-api-key>
 
 # 2. Analyze your project
-frumle
+vendor/bin/frumle
 
 # 3. View results at https://frumle.tellecata.com
 ```
 
 ## Commands
 
-### `frumle [directory]`
+### `vendor/bin/frumle [directory]`
 
 Analyze a codebase. Defaults to the current directory.
 
 ```bash
-frumle                              # Analyze current directory
-frumle ./src                        # Analyze specific directory
-frumle --project-name my-api        # Custom project name
-frumle --ignore tests,storage       # Ignore specific directories
+vendor/bin/frumle                              # Analyze current directory
+vendor/bin/frumle ./src                        # Analyze specific directory
+vendor/bin/frumle --project-name my-api        # Custom project name
+vendor/bin/frumle --ignore tests,storage       # Ignore specific directories
 ```
 
-### `frumle add-key <api-key>`
+### `vendor/bin/frumle add-key <api-key>`
 
 Add or update your API key. Verifies the key with the server before saving.
 
 ```bash
-frumle add-key devdoc_abc123...
+vendor/bin/frumle add-key devdoc_abc123...
 ```
 
-### `frumle login <api-key>`
+### `vendor/bin/frumle login <api-key>`
 
 Alias for `add-key`.
 
-### `frumle status`
+### `vendor/bin/frumle status`
 
 Check your API key status, quota, and usage statistics.
 
 ```bash
-frumle status
+vendor/bin/frumle status
 ```
 
 ## Supported Frameworks
@@ -142,7 +124,7 @@ Edit the `production` URL to enable production API testing in the dashboard.
 
 ```bash
 cd /path/to/laravel-project
-frumle
+vendor/bin/frumle
 ```
 
 Frumle detects Laravel via `artisan` and scans routes, controllers, models, middleware, and more.
@@ -151,7 +133,7 @@ Frumle detects Laravel via `artisan` and scans routes, controllers, models, midd
 
 ```bash
 cd /path/to/symfony-project
-frumle
+vendor/bin/frumle
 ```
 
 Detects Symfony via `config/packages/` and scans controllers with routing attributes/annotations.
@@ -160,7 +142,7 @@ Detects Symfony via `config/packages/` and scans controllers with routing attrib
 
 ```bash
 cd /path/to/codeigniter4-project
-frumle
+vendor/bin/frumle
 ```
 
 Detects CodeIgniter via `app/Config/App.php` and scans controllers with defined routes.
@@ -169,7 +151,7 @@ Detects CodeIgniter via `app/Config/App.php` and scans controllers with defined 
 
 ```bash
 cd /path/to/slim-project
-frumle
+vendor/bin/frumle
 ```
 
 Detects Slim via `public/index.php` and scans route definitions and middleware.
